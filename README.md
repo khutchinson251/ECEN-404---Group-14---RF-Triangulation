@@ -8,6 +8,6 @@ Our project is based on radio frequency triangulation, where there are three rec
 Transmitter have a PCB with a MCU and Radio Module.
 Receivers have a PCB with a MCU, Radio Module, and Stepper Motor IC; Stepper Motor; and a 12V battery.
 
-This GitHub will compile all presentations, code, parts, Altium designs,and documentation for the project.
+This GitHub will compile all presentations, code, parts, Altium designs, and documentation for the project.
 
 To see the GitHub Repository from ECEN 403, click here: https://github.com/Brandonstokes6/RF-Triangulation

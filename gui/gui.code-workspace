@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "gpy",
+			"path": "../gpy"
+		}
+	],
+	"settings": {}
+}

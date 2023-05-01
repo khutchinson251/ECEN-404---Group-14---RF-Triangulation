@@ -1,0 +1,211 @@
+[tool.poetry]
+name = "gui"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "3.10.6"
+numpy = "*"
+pywin32 = "*"
+addict = "^2.4.0"
+appdirs = "^1.4.4"
+xlwings = "*"
+fuzzywuzzy = {extras = ["speedup"], version = "^0.18.0"}
+dataset = "^1.5.2"
+zeep = "^4.1.0"
+pyjanitor = "*"
+keyboard = "^0.13.5"
+Delorean = "^1.0.0"
+black = "*"
+isort = "*"
+PySnooper = "^1.1.0"
+schedule = "^1.1.0"
+kaleido = "0.2.1"
+PyAutoGUI = "^0.9.53"
+xkcdpass = "^1.19.3"
+opencv-python = "^4.5.5"
+python-decouple = "^3.6"
+pdfkit = "^1.0.0"
+APScheduler = "^3.9.1"
+rpyc = "^5.1.0"
+psutil = "*"
+eikon = "*"
+refinitiv-data = "*"
+rich = {extras = ["jupyter"], version = "*"}
+tabula-py = "^2.3.0"
+command-runner = "^1.3.0"
+pymsteams = {extras = ["async"], version = "*"}
+concurrent-log-handler = "^0.9.20"
+cufflinks = "*"
+clean-text = {extras = ["gpl"], version = "^0.6.0"}
+SQLAlchemy = "*"
+rich-cli = "*"
+MonkeyType = "^22.2.0"
+pydantic-sqlalchemy = "*"
+datamodel-code-generator = {extras = ["html"], version = "^0.12.1"}
+poethepoet = "*"
+selenium = "*"
+inquirer = "^2.9.2"
+dask = {extras = ["complete"], version = "^2022.9.0"}
+amortization = "^2.1.0"
+playwright = "*"
+arrow = "*"
+business_calendar = "^0.2.1"
+python-dotenv = {extras = ["cli"], version = "^0.21.0"}
+wheel = "^0.37.1"
+setuptools = "^65.3.0"
+sqlacodegen = "^2.3.0"
+palettable = "^3.3.0"
+setuptools-scm = {extras = ["toml"], version = "^7.0.5"}
+python-benedict = "^0.25.4"
+lxml = "^4.9.1"
+windows-tools = "^2.3.0"
+pyodbc = "^4.0.34"
+O365 = "^2.0.20"
+openpyxl = "^3.0.10"
+authenticator = "^1.1.3"
+more-itertools = "^8.14.0"
+pylint = "^2.15.2"
+pyupgrade = "^2.37.3"
+autoflake = "^1.5.3"
+pre-commit = "^2.20.0"
+Flake8-pyproject = "^1.1.0.post0"
+watchfiles = "^0.18.0"
+PyQt6 = "^6.4.0"
+PySide6 = "^6.4.0"
+psycopg2 = "^2.9.4"
+matplotlib = "^3.6.2"
+Pillow = "^9.3.0"
+geopy = "^2.3.0"
+
+
+[tool.black]
+preview = true
+skip_string_normalization = true
+quiet = true
+line_length = 130
+target_version = ["py310"]
+force-exclude = ".*_pb2.pyi"
+skip_magic_trailing_comma = true
+exclude = '''(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.__pycache__
+    | \.tox
+    | \.venv
+    | \.history
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+)
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 7
+ensure_newline_before_comments = true
+combine_as_imports = true
+line_length = 130
+skip = [".gitignore", ".dockerignore"]
+extend_skip = [".md", ".json"]
+skip_glob = "*_pb2.pyi"
+extra_standard_library = [
+    "typing_extensions",
+    "_typeshed",
+    "_ast",
+    "_collections_abc",
+    "_compression",
+    "_csv",
+    "_curses",
+    "_heapq",
+    "_markupbase",
+    "_random",
+    "_tkinter",
+    "_tracemalloc",
+    "_warnings",
+    "_weakrefset",
+    "genericpath",
+    "opcode",
+    "pyexpat",
+    "__builtin__",
+    "cookielib",
+    "cStringIO",
+    "httplib",
+    "mimetools",
+    "rfc822",
+    "thread",
+    "urllib2",
+    "urlparse",
+    "BaseHTTPServer",
+    "Queue",
+    "SimpleHTTPServer",
+    "SocketServer",
+    "StringIO",
+    "UserDict",
+    "UserList",
+    "UserString",
+]
+
+[tool.autoflake]
+check = true
+expand-star-imports = true
+remove-all-unused-imports = true
+remove-duplicate-keys = true
+exclude = ['.history']
+recursive = true
+
+[tool.flake8]
+extend-ignore = ['E203']
+exclude = [
+	".venv",
+    ".history",
+    ".git",
+    "__pycache__",
+]
+per-file-ignores = ['__init__.py: F401']
+max-complexity = 10
+count = true
+
+[tool.poe]
+envfile = [".env",".routes"]
+poetry_command = ""
+shell_interpreter = "pwsh"
+
+[tool.poe.env]
+TEMP.default = "$env:PROJECT/tmp"
+
+
+[tool.poe.tasks]
+format = "black . --skip-string-normalization --safe --line-length 130 --target-version py310 --preview"
+clean = { "shell" = "rm -Recurse -Force ./**/__pycache__ && rm -Recurse -Force ./*__pycache__",  "interpreter" = "pwsh" }
+watch = { "script" = "core_.file_watcher:file_watcher" }
+webtest= { "script" = "tests.test_web:run" }
+
+
+[tool.pylint.format]
+max-line-length = 130
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+reportMissingImports = true
+reportUndefinedVariable = false
+reportMissingTypeStubs = false
+reportOptionalMemberAccess = false
+reportGeneralTypeIssues = false
+reportOptionalSubscript = false
+reportUnboundVariable = false
+reportOptionalOperand = false
+reportOptionalContextManager = false
+pythonVersion = "3.10"
+pythonPlatform = "Windows"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
